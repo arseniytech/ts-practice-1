@@ -62,7 +62,7 @@ console.log(describeUser("Иван", 25));    // "Иван, возраст: 25"
 // некорректные вызовы, закомментированы (ошибки компилятора):
 // formatPrice("100"); // Argument of type 'string' is not assignable to parameter of type 'number'.
 // clamp(5, 0);        // Expected 3 arguments, but got 2.
-// logMessage(123);    // Argument of type 'number' is not assignable to parameter of type 'string'.
+// logMessage(123);    // Argument of type 'number' is not assignable to parameter of type 'boolean'.
 
 // Задание 3.3. void vs undefined
 // void — функция ничего не возвращает (или возвращает undefined неявно),
@@ -72,3 +72,21 @@ function returnUndefined(): undefined {
     return undefined;
 }
 
+// ============ Часть 4. Мини-проект «Библиотека» ============
+
+import { createBook, markAsRead, getBookInfo, countReadBooks } from "./library.js";
+
+const books = [
+    createBook("1984", "Джордж Оруэлл", 1949),
+    createBook("Мастер и Маргарита", "Михаил Булгаков", 1967),
+    createBook("Преступление и наказание", "Фёдор Достоевский", 1866),
+];
+
+// проверка на существование наших книг в массиве
+if (books[0] && books[2]) {
+    books[0] = markAsRead(books[0]);
+    books[2] = markAsRead(books[2]);
+}
+
+books.forEach(book => console.log(getBookInfo(book)));
+console.log(`Прочитано книг: ${countReadBooks(books)}`);
